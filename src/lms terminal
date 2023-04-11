@@ -1,0 +1,73 @@
+Server [localhost]:
+Database [postgres]:
+Port [5432]:
+Username [postgres]: postgres
+Password for user postgres:
+psql (10.23)
+WARNING: Console code page (866) differs from Windows code page (1251)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# create table cars(id serial primary key,name varchar not null,model varchar not null);
+ОШИБКА:  отношение "cars" уже существует
+postgres=# drop table cars;
+DROP TABLE
+postgres=# create table cars(id serial primary key,name varchar not null,model varchar not null);
+CREATE TABLE
+postgres=# insert into cars(name,model)values('Mercedes','model'),('Audi','model'),('Lamba','model'),('Ferari','model'),('Honda','model'),('Toyta','model'),('Bmw','model'),('Bugatti','model'),('Chevrolet','model');
+INSERT 0 9
+postgres=# create table mercedes(id serial primary key,name varchar not null,model varchar not null,cars_id int references cars(id));
+CREATE TABLE
+postgres=# insert into mercedes(name,model,cars_id)values('MERCEDES AMG','S class',1);
+INSERT 0 1
+postgres=# create table audi(id serial primary key,name varchar not null,model varchar not null,cars_id int references cars(id));
+CREATE TABLE
+postgres=# insert into audi(name,model,cars_id)values('AUDI R8','S class',2);
+INSERT 0 1
+postgres=# create table lamba(id serial primary key,name varchar not null,model varchar not null, cars_id int references cars(id));
+CREATE TABLE
+postgres=# insert into lamba(name,model,cars_id)values('Lamborgini Aventador','S class',3);
+INSERT 0 1
+postgres=# create table ferari(id serial primary key,name varchar not null,model varchar not null,cars_id int references cars(id));
+CREATE TABLE
+postgres=# insert into ferari(name,model,cars_id)values('La Ferari','S class',4);
+INSERT 0 1
+postgres=# create table honda(id serial primary key,name varchar not null,model varchar not null,cars_id int references cars(id));
+CREATE TABLE
+postgres=# insert into honda(name,model,cars_id)values('Honda accord','A class',5);
+INSERT 0 1
+postgres=# create table toyta(id serial primary key,name varchar not null,model varchar not null,cars_id int references cars(id));
+CREATE TABLE
+postgres=# insert into toyta(name,model,cars_id_)values('Toyta Camri','S class',6);
+ОШИБКА:  столбец "cars_id_" в таблице "toyta" не существует
+LINE 1: insert into toyta(name,model,cars_id_)values('Toyta Camri','...
+                                     ^
+postgres=# insert into cars(name,model)values('Mercedes','model'),('Audi','model'),('Lamba','model'),('Ferari','model'),('Honda','model'),('Toyta','model'),('Bmw','model'),('Bugatti','model'),('Chevrolet','model');
+INSERT 0 9
+postgres=# insert into cars(name,model)values('Mercedes','model'),('Audi','model'),('Lamba','model'),('Ferari','model'),('Honda','model'),('Toyta','model'),('Bmw','model'),('Bugatti','model'),('Chevrolet','model');
+INSERT 0 9
+postgres=# insert into toyta(name,model,cars_id)values('Toyta Camri 70','S class',6);
+INSERT 0 1
+postgres=# create table bmw(id serial primary key,name varchar not null,model varchar not null,cars_id int references cars(id));
+CREATE TABLE
+postgres=# insert into bmw(name,model,cars_id)values('BMW M8','S class',7);
+INSERT 0 1
+postgres=# create into bugatti(id serial primary key,name varchar not null,model varchar not null,cars_id int references cars(id));
+ОШИБКА:  ошибка синтаксиса (примерное положение: "into")
+LINE 1: create into bugatti(id serial primary key,name varchar not n...
+               ^
+postgres=# create table bugatti(id serial primary key,name varchar not null,model varchar not null,cars_id int references cars(id));
+CREATE TABLE
+postgres=# insert into bugatti(name,model,cars_id)values('Bugatti Chiron','S class',8);
+INSERT 0 1
+postgres=# create table chevrolet(id serial primary key,name varchar not null,model varchar not null,cars_id(id));
+ОШИБКА:  ошибка синтаксиса (примерное положение: "(")
+LINE 1: ...y,name varchar not null,model varchar not null,cars_id(id));
+                                                                 ^
+postgres=# create table chevrolet(id serial primary key,name varchar not null, model varchar not null,cars_id int references cars(id));
+CREATE TABLE
+postgres=# insert into chevrolet(name,model,cars_id)values('Chevrolet Camoro','S class',9);
+INSERT 0 1
+postgres=# insert into cars(name,model)values('Mercedes','model'),('Audi','model'),('Lamba','model'),('Ferari','model'),('Honda','model'),('Toyta','model'),('Bmw','model'),('Bugatti','model'),('Chevrolet','model');
+INSERT 0 9
